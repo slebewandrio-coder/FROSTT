@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FROST-PS</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI,Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+.loading{
+position:fixed;
+width:100%;
+height:100%;
+background:#020617;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
+color:#7dd3fc;
+z-index:999;
+animation:fadeOut 2.5s forwards;
+animation-delay:1.5s;
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+.aurora{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(56,189,248,0.2),transparent 60%),
+radial-gradient(circle at 80% 30%,rgba(14,165,233,0.2),transparent 60%),
+radial-gradient(circle at 50% 80%,rgba(125,211,252,0.2),transparent 60%);
+animation:auroraMove 12s infinite alternate;
+z-index:-2;
+}
+
+@keyframes auroraMove{
+0%{transform:translateY(0)}
+100%{transform:translateY(-80px)}
+}
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(5,15,30,0.6);
+backdrop-filter:blur(8px);
+border-bottom:1px solid #1e3a5f;
+padding:15px;
+display:flex;
+justify-content:center;
+gap:30px;
+z-index:10;
+}
+
+.navbar a{
+color:#7dd3fc;
+text-decoration:none;
+font-weight:600;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:100px 20px 40px;
+text-align:center;
+}
+
+.hero h1{
+font-size:80px;
+color:#7dd3fc;
+text-shadow:0 0 25px #38bdf8,0 0 60px #0ea5e9;
+margin:0;
+}
+
+.desc{
+color:#c7eaff;
+font-size:18px;
+margin-top:10px;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:14px 28px;
+border-radius:12px;
+background:#0ea5e9;
+color:white;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 0 20px rgba(56,189,248,0.6);
+}
+
+.section{
+margin-top:80px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:rgba(10,20,40,0.6);
+border:1px solid #1e3a5f;
+border-radius:16px;
+padding:20px;
+backdrop-filter:blur(6px);
+}
+
+.card h2{
+color:#7dd3fc;
+margin-top:0;
+}
+
+.copy{
+margin-top:10px;
+padding:8px 16px;
+border:none;
+border-radius:8px;
+background:#0284c7;
+color:white;
+cursor:pointer;
+}
+
+.footer{
+margin-top:80px;
+padding:20px;
+color:#7aa7c7;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="loading">FROST-PS</div>
+
+<div class="aurora"></div>
+<canvas id="snow"></canvas>
+
+<div class="navbar">
+<a href="#home">Home</a>
+<a href="#features">Features</a>
+<a href="#download">Download</a>
+<a href="#tutorial">Tutorial</a>
+<a href="#news">News</a>
+</div>
+
+<div class="container">
+
+<div id="home" class="hero">
+<h1>FROST-PS</h1>
+<p class="desc">A frozen Growtopia Private Server with custom worlds and events.</p>
+<a class="btn" href="#">Join Discord</a>
+</div>
+
+<div id="features" class="section">
+<h2>Server Features</h2>
+
+<div class="grid">
+
+<div class="card">
+<h2>Custom Worlds</h2>
+Explore unique frozen themed worlds.
+</div>
+
+<div class="card">
+<h2>Active Economy</h2>
+Trading system with active market.
+</div>
+
+<div class="card">
+<h2>Weekly Events</h2>
+Events with rewards every week.
+</div>
+
+<div class="card">
+<h2>Friendly Community</h2>
+Meet players and build together.
+</div>
+
+</div>
+</div>
+
+<div id="download" class="section">
+<h2>Download</h2>
+
+<div class="grid">
+
+<div class="card">
+<h2>VHOST</h2>
+<a href="https://www.mediafire.com/file/z7qa77325pqtv56/FrostPS+(1).txt/file">Download</a>
+</div>
+
+<div class="card">
+<h2>PowerTunnel Android</h2>
+<a href="https://dash.gtps.cloud/android/10">Link</a>
+<button class="copy" onclick="copyText('https://dash.gtps.cloud/android/10')">Copy</button>
+</div>
+
+<div class="card">
+<h2>SURGE5 iOS</h2>
+<a href="https://dash.gtps.cloud/ios/10">Link</a>
+<button class="copy" onclick="copyText('https://dash.gtps.cloud/ios/10')">Copy</button>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>Windows Hosts</h2>
+
+<div class="card">
+<p>91.134.85.13 growtopia1.com</p>
+<p>91.134.85.13 growtopia2.com</p>
+<p>91.134.85.13 www.growtopia1.com</p>
+<p>91.134.85.13 www.growtopia2.com</p>
+
+<button class="copy" onclick="copyText(`91.134.85.13 growtopia1.com
+91.134.85.13 growtopia2.com
+91.134.85.13 www.growtopia1.com
+91.134.85.13 www.growtopia2.com`)">Copy</button>
+
+</div>
+</div>
+
+<div id="tutorial" class="section">
+<h2>How to Play</h2>
+
+<div class="grid">
+
+<div class="card">
+<h2>Android</h2>
+Install PowerTunnel<br>
+Download VHOST<br>
+Import config<br>
+Start tunnel<br>
+Open Growtopia
+</div>
+
+<div class="card">
+<h2>Windows</h2>
+Open hosts file<br>
+Paste FrostPS hosts<br>
+Save file<br>
+Launch Growtopia
+</div>
+
+<div class="card">
+<h2>iOS</h2>
+Install SURGE5<br>
+Import config<br>
+Enable VPN<br>
+Open Growtopia
+</div>
+
+</div>
+</div>
+
+<div id="news" class="section">
+<h2>News</h2>
+
+<div class="card">
+FrostPS Launch<br><br>
+New worlds<br>
+Custom items<br>
+Events coming soon
+</div>
+
+</div>
+
+<div class="footer">
+FROST-PS © 2026
+</div>
+
+</div>
+
+<script>
+
+function copyText(text){
+navigator.clipboard.writeText(text)
+alert("Copied")
+}
+
+const canvas=document.getElementById("snow")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let snow=[]
+
+for(let i=0;i<120;i++){
+snow.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3,
+d:Math.random()*1
+})
+}
+
+function drawSnow(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+ctx.fillStyle="white"
+ctx.beginPath()
+
+for(let i=0;i<snow.length;i++){
+let f=snow[i]
+ctx.moveTo(f.x,f.y)
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true)
+}
+
+ctx.fill()
+moveSnow()
+}
+
+let angle=0
+
+function moveSnow(){
+angle+=0.01
+
+for(let i=0;i<snow.length;i++){
+
+let f=snow[i]
+
+f.y+=Math.cos(angle+f.d)+1+f.r/2
+f.x+=Math.sin(angle)*2
+
+if(f.x>canvas.width+5||f.x<-5||f.y>canvas.height){
+snow[i]={x:Math.random()*canvas.width,y:-10,r:f.r,d:f.d}
+}
+
+}
+}
+
+setInterval(drawSnow,33)
+
+</script>
+
+</body>
+  </html>
